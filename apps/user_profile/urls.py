@@ -1,9 +1,10 @@
 from django.conf.urls import patterns, url
-from .views import IndexView
+from .views import IndexView, RequestsView
 
 
 urlpatterns = patterns(
     '',
 
+    url(r'^requests/$', RequestsView.as_view(), name='requests'),
     url(r'^$', IndexView.as_view(), name='index'),
 )
