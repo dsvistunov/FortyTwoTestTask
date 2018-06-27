@@ -27,3 +27,10 @@ class IndexViewTests(TestCase):
         self.assertIn(data.skype, response.content)
         self.assertIn(data.other_contacts, response.content)
         self.assertIn(data.bio, response.content)
+
+    def test_returns_first_if_two_records(self):
+        """IndexView returns first record if two records in db"""
+        Profile.objects.create(first_name='Test')
+        response = self.client.get('/')
+        data = Profile.objects.first()
+        self.assertEqual(response.context['data'], data)
