@@ -43,3 +43,11 @@ class IndexViewTests(TestCase):
         data.save()
         response = self.client.get('/')
         self.assertIn(data.first_name, response.content)
+
+
+class RequestsViewTests(TestCase):
+
+    def test_uses_appropriate_template(self):
+        """RequestsView uses requests.html"""
+        response = self.client.get('/requests/')
+        self.assertTemplateUsed(response, 'requests.html')
