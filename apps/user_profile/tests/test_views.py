@@ -1,3 +1,4 @@
+# -*- coding=utf-8 -*-
 from django.test import TestCase
 from apps.user_profile.models import Profile
 
@@ -34,3 +35,11 @@ class IndexViewTests(TestCase):
         response = self.client.get('/')
         data = Profile.objects.first()
         self.assertEqual(response.context['data'], data)
+
+    def test_renders_cyrillic(self):
+        """IndexView renders cyrillic in template"""
+        data = Profile.objects.first()
+        data.first_name = 'Тест'
+        data.save()
+        response = self.client.get('/')
+        self.assertIn(data.first_name, response.content)
