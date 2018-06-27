@@ -1,4 +1,5 @@
 from django.test import TestCase
+from apps.user_profile.models import Profile
 
 
 class IndexViewTests(TestCase):
@@ -8,17 +9,8 @@ class IndexViewTests(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'index.html')
 
-    def test_index_view_returns_hardcoded_data(self):
-        """Index view returns hardcoded data"""
-        data = {
-            "first_name": "Denis",
-            "last_name": "Svistunov",
-            "date_birth": "1991-04-19",
-            "bio": "Lorem ipsum dolor sit amet.",
-            "email": "d.svistunov1991@gmail.com",
-            "jabber": "d.svistunov@42cc.co",
-            "skype": "d.svistunov",
-            "other_contacts": "+380632028013"
-        }
+    def test_returns_model_data(self):
+        """Index view returns model data"""
         response = self.client.get('/')
+        data = Profile.objects.first()
         self.assertEqual(response.context['data'], data)
