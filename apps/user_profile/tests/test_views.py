@@ -14,3 +14,16 @@ class IndexViewTests(TestCase):
         response = self.client.get('/')
         data = Profile.objects.first()
         self.assertEqual(response.context['data'], data)
+
+    def test_renders_model_data(self):
+        """IndexView renders model data in template"""
+        data = Profile.objects.first()
+        response = self.client.get('/')
+        self.assertIn(data.first_name, response.content)
+        self.assertIn(data.last_name, response.content)
+        self.assertIn(str(data.date_birth), response.content)
+        self.assertIn(data.email, response.content)
+        self.assertIn(data.jabber, response.content)
+        self.assertIn(data.skype, response.content)
+        self.assertIn(data.other_contacts, response.content)
+        self.assertIn(data.bio, response.content)
