@@ -56,3 +56,8 @@ class RequestModelTests(TestCase):
         """Request model stores date"""
         self.assertEqual(Request.objects.all().count(), 1)
         self.assertEqual(str(self.added_request), self.test_request)
+
+    def test_request_model_fields_exists(self):
+        """Requests model has http_inf and added fields"""
+        self.assertTrue(self.added_request.http_inf)
+        self.assertTrue(self.added_request.added)
