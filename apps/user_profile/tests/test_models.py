@@ -1,7 +1,7 @@
 # -*- coding=utf-8 -*-
 import re
 from django.test import TestCase
-from apps.user_profile.models import Profile
+from apps.user_profile.models import Profile, Request
 
 
 class ProfileModelTests(TestCase):
@@ -44,3 +44,15 @@ class ProfileModelTests(TestCase):
         profile.first_name = 'Тест'
         profile.save()
         self.assertTrue(bool(re.search('[а-яА-Я]', profile.first_name)))
+
+
+class RequestModelTests(TestCase):
+
+    def setUp(self):
+        self.test_request = 'http://testserver/test'
+        self.added_request = Request.objects.create(http_inf=self.test_request)
+
+    def test_request_model_stores_data(self):
+        """Request model stores date"""
+        self.assertEqual(Request.objects.all().count(), 1)
+        self.assertEqual(str(self.added_request), self.test_request)
