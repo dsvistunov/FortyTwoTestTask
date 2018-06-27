@@ -1,6 +1,7 @@
 # -*- coding=utf-8 -*-
+import json
 from django.test import TestCase
-from apps.user_profile.models import Profile
+from apps.user_profile.models import Profile, Request
 
 
 class IndexViewTests(TestCase):
@@ -51,3 +52,19 @@ class RequestsViewTests(TestCase):
         """RequestsView uses requests.html"""
         response = self.client.get('/requests/')
         self.assertTemplateUsed(response, 'requests.html')
+
+    def test_returns_ten_requests(self):
+        """RequestsView returns last ten requests"""
+        for number in range(20):
+            url = '/test/' + str(number)
+            self.client.get(url)
+        response = self.client.get(
+            '/requests/',
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+        )
+        requests = json.loads(response.content)
+        saved_requests = list(Request.objects.order_by('-added')[:10])
+        self.assertEqual(requests[0]['fields']['http_inf'],
+                         saved_requests[0].http_inf)
+        self.assertEqual(requests[9]['fields']['http_inf'],
+                         saved_requests[9].http_inf)
