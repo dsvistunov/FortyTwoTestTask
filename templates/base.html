@@ -19,6 +19,10 @@
     <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
         {% block content %}{% endblock content %}
         <hr>
-        <a href="#">requests</a>
+        <a href="{% url 'requests' %}">requests</a>
+
+        <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+        {% block javascript %}{% endblock %}
+
     </body>
 </html>
