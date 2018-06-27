@@ -15,3 +15,11 @@ class Profile(models.Model):
     skype = models.CharField(max_length=30)
     other_contacts = models.TextField()
     bio = models.TextField()
+
+
+class Request(models.Model):
+    http_inf = models.CharField(max_length=120)
+    added = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.http_inf
