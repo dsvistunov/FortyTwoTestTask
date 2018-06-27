@@ -1,3 +1,5 @@
+# -*- coding=utf-8 -*-
+import re
 from django.test import TestCase
 from apps.user_profile.models import Profile
 
@@ -27,3 +29,18 @@ class ProfileModelTests(TestCase):
             'm pulvinar turpis vel lorem molestie, eget mattis diam da'
             'pibus.'
         )
+
+    def test_entry_is_not_cyrillic(self):
+        """Profile model entry isn't contain cyrillic"""
+        profile = Profile.objects.first()
+        self.assertFalse(bool(re.search('[а-яА-Я]', profile.first_name)))
+        self.assertFalse(bool(re.search('[а-яА-Я]', profile.last_name)))
+        self.assertFalse(bool(re.search('[а-яА-Я]', profile.email)))
+        self.assertFalse(bool(re.search('[а-яА-Я]', profile.jabber)))
+        self.assertFalse(bool(re.search('[а-яА-Я]', profile.skype)))
+        self.assertFalse(bool(re.search('[а-яА-Я]', profile.other_contacts)))
+        self.assertFalse(bool(re.search('[а-яА-Я]', profile.bio)))
+        # change to cyrillic
+        profile.first_name = 'Тест'
+        profile.save()
+        self.assertTrue(bool(re.search('[а-яА-Я]', profile.first_name)))
