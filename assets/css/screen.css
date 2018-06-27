@@ -1,1 +1,26 @@
- 
+body {
+    width: 800px;
+    margin: auto;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 18px;
+}
+.content {
+    padding-top: 25px;
+}
+h1 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 26px;
+}
+.block {
+    width: 400px;
+    float: left;
+    visibility: visible;
+}
+#bio {
+    padding-top: 30px;
+}
