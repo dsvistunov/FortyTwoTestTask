@@ -6,19 +6,19 @@
             <h1>42 Coffee Cups Test Assignment</h1>
         </div>
         <div class="block" id="fullname">
-            <p>Name: Denis</p>
-            <p>Last name: Svistunov</p>
-            <p>Date of birth: 1991-04-19</p>
+            <p>Name: {{ data.first_name }}</p>
+            <p>Last name: {{ data.last_name }}</p>
+            <p>Date of birth: {{ data.date_birth }}</p>
             <p id="bio">Bio:</p>
-            <p>Lorem ipsum</p>
+            <p>{{ data.bio | linebreaks}}</p>
         </div>
         <div class="block" id="contacts">
             <p>Contacts</p>
-            <p>Email: d.svistunov1991@gmail.com</p>
-            <p>Jabber: d.svistunov@42cc.co</p>
-            <p>Skype: dsvistunov</p>
+            <p>Email: {{ data.email }}</p>
+            <p>Jabber: {{ data.jabber }}</p>
+            <p>Skype: {{ data.skype }}</p>
             <p>Other contacts:</p>
-            <p>+380632028013</p>
+            <p>{{ data.other_contacts | linebreaks }}</p>
         </div>
     </div>
 {% endblock %}
