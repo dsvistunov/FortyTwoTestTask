@@ -10,3 +10,8 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['data'] = Profile.objects.first()
         return context
+
+
+class RequestsView(TemplateView):
+
+    template_name = 'requests.html'
