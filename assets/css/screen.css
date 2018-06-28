@@ -55,6 +55,7 @@ input[type='file'] {
     width: 250px;
     margin: auto;
     text-align: right;
+    padding-bottom: 20px;
 }
 #btn-login-submit {
     text-align: center;
@@ -65,4 +66,8 @@ span {
 }
 span.login {
     text-align:right;
+}
+li {
+    list-style-type: none;
+    display: inline-block;
 }
