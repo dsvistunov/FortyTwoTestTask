@@ -47,6 +47,23 @@ class IndexViewTests(TestCase):
         response = self.client.get('/')
         self.assertIn(data.first_name, response.content)
 
+    def test_renders_login_link_if_user_not_logged(self):
+        """Renders login link if user not logged"""
+        response = self.client.get('/')
+        self.assertIn('<a href="/login/">Login</a>', response.content)
+
+    def test_renders_edit_link_if_user_logged(self):
+        """Renders edit link if user logged"""
+        self.client.login(username='admin', password='admin')
+        response = self.client.get('/')
+        self.assertIn('<a href="/edit/">Edit</a>', response.content)
+
+    def test_renders_logout_link_if_user_logged(self):
+        """Renders logout link if user logged"""
+        self.client.login(username='admin', password='admin')
+        response = self.client.get('/')
+        self.assertIn('<a href="/logout/">Logout</a>', response.content)
+
 
 class RequestsViewTests(TestCase):
 
