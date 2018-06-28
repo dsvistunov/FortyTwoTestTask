@@ -15,6 +15,7 @@ class Profile(models.Model):
     skype = models.CharField(max_length=30)
     other_contacts = models.TextField()
     bio = models.TextField()
+    photo = models.ImageField(null=True, blank=True, upload_to='photo/')
 
 
 class Request(models.Model):
