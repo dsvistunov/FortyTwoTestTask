@@ -68,3 +68,11 @@ class RequestsViewTests(TestCase):
                          saved_requests[0].http_inf)
         self.assertEqual(requests[9]['fields']['http_inf'],
                          saved_requests[9].http_inf)
+
+
+class EditViewTests(TestCase):
+
+    def test_uses_appropriate_template(self):
+        """EditView uses edit.html"""
+        response = self.client.get('/edit/')
+        self.assertTemplateUsed(response, 'edit.html')
