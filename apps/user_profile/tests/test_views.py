@@ -2,6 +2,7 @@
 import json
 from django.test import TestCase
 from apps.user_profile.models import Profile, Request
+from apps.user_profile.forms import ProfileForm
 
 
 class IndexViewTests(TestCase):
@@ -76,3 +77,8 @@ class EditViewTests(TestCase):
         """EditView uses edit.html"""
         response = self.client.get('/edit/')
         self.assertTemplateUsed(response, 'edit.html')
+
+    def test_returns_form(self):
+        """EditView returns ProfileForm"""
+        response = self.client.get('/edit/')
+        self.assertIsInstance(response.context['form'], ProfileForm)
