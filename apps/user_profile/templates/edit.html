@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
     <div class="content">
             <h1>42 Coffee Cups Test Assignment</h1>
             <form>
+                {% csrf_token %}
                 <div class="block" id="align-right">
                     <p>
                         {{ form.first_name.label_tag }}
@@ -47,11 +49,17 @@
                         <p>{{ form.bio }}</p>
                     </div>
                 </div>
-                <div class="form-control">
+                <div>
                     <div id="status"></div>
                     <input type="submit" value="Save">
                     <a href="{% url 'index' %}">Cancel</a>
+                    <img id="loader" src="{{ STATIC_URL }}/gifs/ajax-loader.gif" alt="loader">
                 </div>
             </form>
         </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/form.js' %}"></script>
 {% endblock %}
