@@ -7,7 +7,7 @@ body {
     line-height: 18px;
 }
 .content {
-    padding-top: 25px;
+    padding-top: 10px;
 }
 h1 {
     padding: 0px;
@@ -20,7 +20,7 @@ h1 {
     width: 400px;
     float: left;
     visibility: visible;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
 }
 #bio {
     padding-top: 30px;
