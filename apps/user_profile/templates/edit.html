@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}" media="screen, projection"/>
+{% endblock %}
+
 {% block content %}
     <div class="content">
             <h1>42 Coffee Cups Test Assignment</h1>
