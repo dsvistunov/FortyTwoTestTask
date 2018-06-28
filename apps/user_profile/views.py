@@ -1,7 +1,7 @@
 import json
 from django.core import serializers
-from django.views.generic import FormView
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import UpdateView
 from django.http import HttpResponse
 from .models import Profile, Request
 from .forms import ProfileForm
@@ -65,15 +65,20 @@ class AjaxableResponseMixin(object):
         response = super(AjaxableResponseMixin, self).form_valid(form)
         if self.request.is_ajax():
             data = {'msg': 'Changes have been saved'}
+            print '***valid***'
             return self.render_to_json_response(data)
         else:
             return response
 
 
-class EditView(AjaxableResponseMixin, FormView):
+class EditView(AjaxableResponseMixin, UpdateView):
     template_name = 'edit.html'
     form_class = ProfileForm
+    success_url = '/edit/'
 
-    def get_form(self, form_class):
-        profile = Profile.objects.first()
-        return form_class(instance=profile, **self.get_form_kwargs())
+    # def get_form(self, form_class):
+    #     profile = Profile.objects.first()
+    #     return form_class(instance=profile, **self.get_form_kwargs())
+
+    def get_object(self):
+        return Profile.objects.first()
