@@ -57,7 +57,7 @@ class AjaxableResponseMixin(object):
     def form_invalid(self, form):
         response = super(AjaxableResponseMixin, self).form_invalid(form)
         if self.request.is_ajax():
-            return self.render_to_json_response(form.errors, status=400)
+            return self.render_to_json_response(dict(form.errors), status=400)
         else:
             return response
 
@@ -65,7 +65,6 @@ class AjaxableResponseMixin(object):
         response = super(AjaxableResponseMixin, self).form_valid(form)
         if self.request.is_ajax():
             data = {'msg': 'Changes have been saved'}
-            print '***valid***'
             return self.render_to_json_response(data)
         else:
             return response
