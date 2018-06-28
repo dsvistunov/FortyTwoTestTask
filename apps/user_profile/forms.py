@@ -8,5 +8,5 @@ class ProfileForm(ModelForm):
         model = Profile
         fields = [
             'first_name', 'last_name', 'date_birth', 'email',
-            'jabber', 'skype', 'other_contacts', 'bio'
+            'jabber', 'skype', 'other_contacts', 'bio', 'photo'
         ]
