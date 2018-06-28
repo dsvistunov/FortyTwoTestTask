@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="content">
+            <h1>42 Coffee Cups Test Assignment</h1>
+            <form>
+                <div class="block" id="align-right">
+                    <p>
+                        <label>Name:</label>
+                        <input type="text" value="Denis">
+                    </p>
+                    <p>
+                        <label>Last name:</label>
+                        <input type="text" value="Svistunov">
+                    </p>
+                    <p>
+                        <label>Date of birth:</label>
+                        <input type="text" value="1991-04-19">
+                    </p>
+                    <p>
+                        <label>Photo</label>
+                        <input type="file">
+                    </p>
+                <div class="photo"></div>
+                </div>
+                <div class="block">
+                    <div id="align-right">
+                        <p>
+                            <label>Email</label>
+                            <input type="email" value="d.svistunov1991@gmail.com">
+                        </p>
+                        <p>
+                            <label>Jabber</label>
+                            <input type="email" value="d.svistunov@42cc.co">
+                        </p>
+                        <p>
+                            <label>Skype</label>
+                            <input type="text" value="d.svistunov">
+                        </p>
+                    </div>
+                    <p><label>Other contacts</label></p>
+                    <p><textarea name="" id="" cols="40" rows="9">+380632028013</textarea></p>
+                    <div id="bio">
+                        <p id="padding-bio"><label>Bio</label></p>
+                        <p><textarea name="" id="" cols="40" rows="9">Lorem ipsum</textarea></p>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <div id="status"></div>
+                    <input type="submit" value="Save">
+                    <a href="{% url 'index' %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+{% endblock %}
