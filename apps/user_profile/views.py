@@ -1,7 +1,10 @@
+import json
 from django.core import serializers
+from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from django.http import HttpResponse
 from .models import Profile, Request
+from .forms import ProfileForm
 
 
 class IndexView(TemplateView):
@@ -42,3 +45,8 @@ class RequestsView(JSONResponseMixin, TemplateView):
             context = self.get_context_data(**kwargs)
             return self.render_to_json_response(context)
         return response
+
+
+class EditView(FormView):
+    template_name = 'edit.html'
+    form_class = ProfileForm
