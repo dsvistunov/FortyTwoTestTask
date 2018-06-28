@@ -24,7 +24,7 @@
                         {{ form.photo }}
                     </p>
                 <div>
-                    <img id="photo" src="{{ form.photo.value }}" alt="Photo">
+                    <img id="photo" src="{{ STATIC_URL }}{{ MEDIA_URL }}{{ form.photo.value }}" alt="Photo">
                 </div>
                 </div>
                 <div class="block">
