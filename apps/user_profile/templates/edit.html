@@ -6,16 +6,16 @@
             <form>
                 <div class="block" id="align-right">
                     <p>
-                        <label>Name:</label>
-                        <input type="text" value="Denis">
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
                     </p>
                     <p>
-                        <label>Last name:</label>
-                        <input type="text" value="Svistunov">
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
                     </p>
                     <p>
-                        <label>Date of birth:</label>
-                        <input type="text" value="1991-04-19">
+                        {{ form.date_birth.label_tag }}
+                        {{ form.date_birth }}
                     </p>
                     <p>
                         <label>Photo</label>
@@ -26,23 +26,23 @@
                 <div class="block">
                     <div id="align-right">
                         <p>
-                            <label>Email</label>
-                            <input type="email" value="d.svistunov1991@gmail.com">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
                         </p>
                         <p>
-                            <label>Jabber</label>
-                            <input type="email" value="d.svistunov@42cc.co">
+                            {{ form.jabber.label_tag }}
+                            {{ form.jabber }}
                         </p>
                         <p>
-                            <label>Skype</label>
-                            <input type="text" value="d.svistunov">
+                            {{ form.skype.label_tag }}
+                            {{ form.skype }}
                         </p>
                     </div>
-                    <p><label>Other contacts</label></p>
-                    <p><textarea name="" id="" cols="40" rows="9">+380632028013</textarea></p>
+                    <p>{{ form.other_contacts.label_tag }}</p>
+                    <p>{{ form.other_contacts }}</p>
                     <div id="bio">
-                        <p id="padding-bio"><label>Bio</label></p>
-                        <p><textarea name="" id="" cols="40" rows="9">Lorem ipsum</textarea></p>
+                        <p id="padding-bio">{{ form.bio.label_tag }}</p>
+                        <p>{{ form.bio }}</p>
                     </div>
                 </div>
                 <div class="form-control">
