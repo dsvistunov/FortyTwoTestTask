@@ -122,3 +122,42 @@ class EditViewTests(TestCase):
         self.assertEqual(bio.skype, 'testskype')
         self.assertEqual(bio.jabber, 'test@jabber.com')
         self.assertEqual(bio.bio, 'Test')
+
+    def test_returns_success(self):
+        """EditView returns success message if data valid"""
+        response = self.client.post('/edit/', data={
+            u'bio': [u'Test'], u'first_name': [u'Test'],
+            u'last_name': [u'Test'], u'date_birth': [u'2000-01-01'],
+            u'other_contacts': [u'+380630000000'], u'skype': [u'testskype'],
+            u'email': [u'test@testmail.com'], u'jabber': [u'test@jabber.com'],
+            u'csrfmiddlewaretoken': [u'XGI9e500JzRRAifdgPxHKR59YJFFId8B'],
+        }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        success_msg = {'msg': 'Changes have been saved'}
+        self.assertEqual(
+            json.loads(response.content),
+            success_msg
+        )
+
+    def test_returns_error(self):
+        """EditView returns error message if data invalid"""
+        response = self.client.post('/edit/', data={
+            u'bio': [u''], u'first_name': [u''],
+            u'last_name': [u''], u'date_birth': [u'01-01-2000'],
+            u'other_contacts': [u'+380630000000'],
+            u'email': [u'test@testmail'], u'skype': [u''],
+            u'csrfmiddlewaretoken': [u'XGI9e500JzRRAifdgPxHKR59YJFFId8B'],
+            u'jabber': [u'testjabber.com'],
+        }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        errors = {
+            "bio": ["This field is required."],
+            "first_name": ["This field is required."],
+            "last_name": ["This field is required."],
+            "date_birth": ["Enter a valid date."],
+            "skype": ["This field is required."],
+            "jabber": ["Enter a valid email address."],
+            "email": ["Enter a valid email address."]
+        }
+        self.assertEqual(
+            json.loads(response.content),
+            errors
+        )
