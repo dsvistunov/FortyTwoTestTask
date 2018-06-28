@@ -76,9 +76,5 @@ class EditView(AjaxableResponseMixin, UpdateView):
     form_class = ProfileForm
     success_url = '/edit/'
 
-    # def get_form(self, form_class):
-    #     profile = Profile.objects.first()
-    #     return form_class(instance=profile, **self.get_form_kwargs())
-
     def get_object(self):
         return Profile.objects.first()
