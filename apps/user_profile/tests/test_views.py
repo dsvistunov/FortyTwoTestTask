@@ -82,3 +82,26 @@ class EditViewTests(TestCase):
         """EditView returns ProfileForm"""
         response = self.client.get('/edit/')
         self.assertIsInstance(response.context['form'], ProfileForm)
+
+    def test_renders_form(self):
+        """EditView renders form with data"""
+        form = ProfileForm(instance=Profile.objects.first())
+        response = self.client.get('/edit/')
+        self.assertIn(form['first_name'].label_tag(), response.content)
+        self.assertIn(str(form['first_name']), response.content)
+        self.assertIn(form['last_name'].label_tag(), response.content)
+        self.assertIn(str(form['last_name']), response.content)
+        self.assertIn(form['date_birth'].label_tag(), response.content)
+        self.assertIn(str(form['date_birth']), response.content)
+        self.assertIn(form['email'].label_tag(), response.content)
+        self.assertIn(str(form['email']), response.content)
+        self.assertIn(form['jabber'].label_tag(), response.content)
+        self.assertIn(str(form['jabber']), response.content)
+        self.assertIn(form['skype'].label_tag(), response.content)
+        self.assertIn(str(form['skype']), response.content)
+        self.assertIn(form['other_contacts'].label_tag(), response.content)
+        self.assertIn(str(form['other_contacts']), response.content)
+        self.assertIn(form['bio'].label_tag(), response.content)
+        self.assertIn(str(form['bio']), response.content)
+        self.assertIn(form['photo'].label_tag(), response.content)
+        self.assertIn(str(form['photo']), response.content)
