@@ -9,7 +9,8 @@
             <p>Name: {{ data.first_name }}</p>
             <p>Last name: {{ data.last_name }}</p>
             <p>Date of birth: {{ data.date_birth }}</p>
-            <div class="photo"></div>
+            <p>Photo:</p>
+            <img src="{{ data.photo.url|default_if_none:'#' }}" alt="Photo">
         </div>
         <div class="block" id="contacts">
             <p>Contacts</p>
