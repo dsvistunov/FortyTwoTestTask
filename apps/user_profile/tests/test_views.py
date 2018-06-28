@@ -164,3 +164,16 @@ class EditViewTests(TestCase):
             json.loads(response.content),
             errors
         )
+
+
+class AuthSysTests(TestCase):
+
+    def test_login_view_uses_appropriate_template(self):
+        """Login view uses login.html"""
+        response = self.client.get('/login/')
+        self.assertTemplateUsed(response, 'login.html')
+
+    def test_logout_view_redirect_to_index(self):
+        """Logout view redirects to index page"""
+        response = self.client.get('/logout/')
+        self.assertRedirects(response, '/')
