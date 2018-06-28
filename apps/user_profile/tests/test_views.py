@@ -104,6 +104,8 @@ class EditViewTests(TestCase):
         self.assertIn(str(form['other_contacts']), response.content)
         self.assertIn(form['bio'].label_tag(), response.content)
         self.assertIn(str(form['bio']), response.content)
+        self.assertIn(form['photo'].label_tag(), response.content)
+        self.assertIn(str(form['photo']), response.content)
 
     def test_saves_Post(self):
         """EditView saves data if get POST request"""
