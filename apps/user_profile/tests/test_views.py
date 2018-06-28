@@ -103,3 +103,22 @@ class EditViewTests(TestCase):
         self.assertIn(str(form['other_contacts']), response.content)
         self.assertIn(form['bio'].label_tag(), response.content)
         self.assertIn(str(form['bio']), response.content)
+
+    def test_saves_Post(self):
+        """EditView saves data if get POST request"""
+        self.client.post('/edit/', data={
+            u'bio': [u'Test'], u'first_name': [u'Test'],
+            u'last_name': [u'Test'], u'date_birth': [u'2000-01-01'],
+            u'other_contacts': [u'+380630000000'], u'skype': [u'testskype'],
+            u'email': [u'test@testmail.com'], u'jabber': [u'test@jabber.com'],
+            u'csrfmiddlewaretoken': [u'XGI9e500JzRRAifdgPxHKR59YJFFId8B'],
+        })
+        bio = Profile.objects.first()
+        self.assertEqual(bio.first_name, 'Test')
+        self.assertEqual(bio.last_name, 'Test')
+        self.assertEqual(str(bio.date_birth), '2000-01-01')
+        self.assertEqual(bio.other_contacts, '+380630000000')
+        self.assertEqual(bio.email, 'test@testmail.com')
+        self.assertEqual(bio.skype, 'testskype')
+        self.assertEqual(bio.jabber, 'test@jabber.com')
+        self.assertEqual(bio.bio, 'Test')
