@@ -10,7 +10,7 @@
             <p>Last name: {{ data.last_name }}</p>
             <p>Date of birth: {{ data.date_birth }}</p>
             <p>Photo:</p>
-            <img src="{{ data.photo.url|default_if_none:'#' }}" alt="Photo">
+            <img src="{{ data.photo|default_if_none:'#' }}" alt="Photo">
         </div>
         <div class="block" id="contacts">
             <p>Contacts</p>
