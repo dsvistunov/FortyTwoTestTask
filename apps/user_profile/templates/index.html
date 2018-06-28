@@ -3,7 +3,19 @@
 {% block content %}
     <div class="content">
         <div>
-            <h1>42 Coffee Cups Test Assignment</h1>
+            <span>
+                <h1>42 Coffee Cups Test Assignment</h1>
+            </span>
+            <span class="login">
+                {% if user.is_authenticated %}
+                    <ul>
+                        <li><a href="{% url 'edit' %}">Edit</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </span>
         </div>
         <div class="block" id="fullname">
             <p>Name: {{ data.first_name }}</p>
