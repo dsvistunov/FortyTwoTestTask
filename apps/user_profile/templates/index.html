@@ -9,8 +9,7 @@
             <p>Name: {{ data.first_name }}</p>
             <p>Last name: {{ data.last_name }}</p>
             <p>Date of birth: {{ data.date_birth }}</p>
-            <p id="bio">Bio:</p>
-            <p>{{ data.bio | linebreaks}}</p>
+            <div class="photo"></div>
         </div>
         <div class="block" id="contacts">
             <p>Contacts</p>
@@ -19,6 +18,8 @@
             <p>Skype: {{ data.skype }}</p>
             <p>Other contacts:</p>
             <p>{{ data.other_contacts | linebreaks }}</p>
+            <p id="bio">Bio:</p>
+            <p>{{ data.bio | linebreaks}}</p>
         </div>
     </div>
 {% endblock %}

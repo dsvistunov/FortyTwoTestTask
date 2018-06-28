@@ -20,7 +20,7 @@ h1 {
     width: 400px;
     float: left;
     visibility: visible;
-    padding-bottom: 80px;
+    padding-bottom: 30px;
 }
 #bio {
     padding-top: 30px;
@@ -28,5 +28,10 @@ h1 {
 hr {
     border: 1px solid rgb(72, 72, 72);
     margin: 0px;
-    width: 600px;
+    width: 800px;
+}
+.photo {
+    width: 290px;
+    height: 380px;
+    border: 2px solid rgb(72, 72, 72);
 }
