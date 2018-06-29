@@ -35,3 +35,28 @@ class Request(models.Model):
 
     def __unicode__(self):
         return self.http_inf
+
+
+class SignalEntry(models.Model):
+
+    UNKNOWN = 0
+    CREATE = 1
+    UPDATE = 2
+    DELETE = 3
+
+    CHOICES = (
+        (UNKNOWN, 'Unknown'),
+        (CREATE, 'Create'),
+        (UPDATE, 'Update'),
+        (DELETE, 'Delete')
+    )
+
+    model = models.CharField(max_length=40)
+    instance = models.CharField(max_length=40)
+    action = models.SmallIntegerField(max_length=1, choices=CHOICES, default=0)
+    added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return u'%s - %s - <%s: %s>' % (
+            self.added, self.get_action_display(), self.model, self.instance
+        )
