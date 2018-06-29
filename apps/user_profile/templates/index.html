@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% load edit_link %}
 
 {% block content %}
     <div class="content">
@@ -10,6 +12,7 @@
                 {% if user.is_authenticated %}
                     <ul>
                         <li><a href="{% url 'edit' %}">Edit</a></li>
+                        <li>{% edit_link data %}</li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                 {% else %}
