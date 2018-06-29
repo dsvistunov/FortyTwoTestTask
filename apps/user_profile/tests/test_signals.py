@@ -3,7 +3,7 @@ from apps.user_profile.models import Profile, SignalEntry
 
 
 class SignalsTest(TestCase):
-    
+
     def setUp(self):
         self.profile = {
             "first_name": "Test",
