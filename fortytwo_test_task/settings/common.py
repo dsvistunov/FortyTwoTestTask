@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import sys
 
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
