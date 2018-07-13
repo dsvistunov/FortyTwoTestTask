@@ -121,7 +121,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 # Template Settings
 TEMPLATE_DIRS = (
@@ -138,3 +138,5 @@ SOUTH_TESTS_MIGRATE = False
 DATE_FORMAT = "Y-m-d"
 
 LOGIN_REDIRECT_URL = 'index'
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
