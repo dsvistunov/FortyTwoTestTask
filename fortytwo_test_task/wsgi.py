@@ -10,9 +10,11 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 import os
 from django.core.wsgi import get_wsgi_application
 
+from . import settings
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "fortytwo_test_task.settings")
 
-from whitenoise.django import DjangoWhiteNoise
-
 application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
+
+if settings.DEBUG == False:
+	application = DjangoWhiteNoise(application)
