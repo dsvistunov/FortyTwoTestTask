@@ -17,4 +17,5 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "fortytwo_test_task.settings")
 application = get_wsgi_application()
 
 if settings.DEBUG == False:
+	from whitenoise.django import DjangoWhiteNoise
 	application = DjangoWhiteNoise(application)
