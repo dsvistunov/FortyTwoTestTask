@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import sys
+import dj_database_url
 
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -26,11 +27,11 @@ sys.path.append(os.path.join(BASE_DIR, 'apps'))
 SECRET_KEY = 'x=c0_e(onjn^80irdy2c221#)2t^qi&6yrc$31i(&ti*_jf3l8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -120,6 +121,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+
 # Template Settings
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or
@@ -135,3 +138,5 @@ SOUTH_TESTS_MIGRATE = False
 DATE_FORMAT = "Y-m-d"
 
 LOGIN_REDIRECT_URL = 'index'
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
